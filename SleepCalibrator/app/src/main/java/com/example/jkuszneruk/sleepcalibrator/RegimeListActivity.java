@@ -47,12 +47,21 @@ public class RegimeListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
+        /* configure bottom buttons */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
                 startActivity(new Intent(context, SetUpNewRegime.class));
+            }
+        });
+        FloatingActionButton morningInterviewButton = (FloatingActionButton) findViewById(R.id.morningInterview);
+        morningInterviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                startActivity(new Intent(context, MorningInterview.class));
             }
         });
 

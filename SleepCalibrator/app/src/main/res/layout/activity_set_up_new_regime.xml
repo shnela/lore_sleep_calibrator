@@ -24,13 +24,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sleep duration: "/>
+                android:text="You will be sleeping for: "/>
             <TextView
                 android:id="@+id/sleep_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
                 android:text="min"
+                android:textStyle="normal|bold"
                 />
 
         </LinearLayout>
@@ -39,6 +39,8 @@
             android:id="@+id/sleep_duration_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_marginTop="@dimen/slider_desc_top_margin"
             app:thumbNumber="1"
 
             app:scaleMax="720"
@@ -54,30 +56,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sleep between: "/>
+                android:text="You will be sleeping between "/>
             <TextView
                 android:id="@+id/aim_wake_up_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text=""
+                android:textStyle="normal|bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" - "
-                android:paddingLeft="5dp"/>
+                android:text=" and "
+                />
             <TextView
                 android:id="@+id/aim_sleep_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:paddingLeft="5dp"
-                />
+                android:textStyle="normal|bold" />
         </LinearLayout>
 
         <io.apptik.widget.MultiSlider
             android:id="@+id/time_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_marginTop="@dimen/slider_desc_top_margin"
 
             app:scaleMax="720"
             app:scaleMin="-360"

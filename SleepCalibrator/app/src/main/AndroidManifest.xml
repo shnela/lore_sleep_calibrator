@@ -35,6 +35,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.jkuszneruk.sleepcalibrator.RegimeListActivity" />
         </activity>
+        <activity android:name=".MorningInterview"
+            android:label="Morning interview" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jkuszneruk.sleepcalibrator.RegimeListActivity" />
+        </activity>
     </application>
 
 </manifest>
