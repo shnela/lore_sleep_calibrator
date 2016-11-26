@@ -29,5 +29,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     compile 'io.apptik.widget:multislider:1.2'
+    compile 'com.github.medyo:fancybuttons:1.8.2'
     testCompile 'junit:junit:4.12'
 }

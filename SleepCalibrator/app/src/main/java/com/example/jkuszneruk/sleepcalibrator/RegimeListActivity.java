@@ -1,7 +1,5 @@
 package com.example.jkuszneruk.sleepcalibrator;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +10,13 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.example.jkuszneruk.sleepcalibrator.dummy.DummyContent;
+import com.example.jkuszneruk.sleepcalibrator.db.Regime;
+import com.example.jkuszneruk.sleepcalibrator.db.RegimeFormatting;
+import com.example.jkuszneruk.sleepcalibrator.model.SleepRegimeContent;
 
 import java.util.List;
 import android.app.Fragment;
@@ -67,15 +68,15 @@ public class RegimeListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(SleepRegimeContent.ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Regime> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<Regime> items) {
             mValues = items;
         }
 
@@ -89,10 +90,26 @@ public class RegimeListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
+            holder.mTimeView.setText(RegimeFormatting.startTime(holder.mItem) + " + " + RegimeFormatting.sleepLength(holder.mItem));
+
+
+            if (Math.random() > 0.5) { // test whether data available here
+                holder.mStats.setVisibility(View.VISIBLE);
+                holder.mNoData.setVisibility(View.GONE);
+                holder.mQualityView.setText(RegimeFormatting.averageQuality(holder.mItem));
+                holder.mMoodView.setText(RegimeFormatting.averageMood(holder.mItem));
+                holder.mEnergyView.setText(RegimeFormatting.averageEnergy(holder.mItem));
+            }
+            else {
+                holder.mNoData.setVisibility(View.VISIBLE);
+                holder.mStats.setVisibility(View.GONE);
+            }
+
+
+
+
+            /*holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
@@ -111,7 +128,7 @@ public class RegimeListActivity extends AppCompatActivity {
                         context.startActivity(intent);
                     }
                 }
-            });
+            });*/
         }
 
         @Override
@@ -121,20 +138,35 @@ public class RegimeListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+
+            public final TextView mTimeView;
+
+            public final LinearLayout mStats;
+            public final TextView mNoData;
+
+            public final TextView mQualityView;
+            public final TextView mMoodView;
+            public final TextView mEnergyView;
+
+            public Regime mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mTimeView = (TextView) view.findViewById(R.id.time);
+                mStats = (LinearLayout) view.findViewById(R.id.stats);
+                mNoData = (TextView) view.findViewById(R.id.nodata);
+                mQualityView = (TextView) view.findViewById(R.id.quality);
+                mMoodView = (TextView) view.findViewById(R.id.mood);
+                mEnergyView = (TextView) view.findViewById(R.id.energy);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mTimeView.getText() + "'"
+                                        + " '" + mQualityView.getText() + "'"
+                                        + " '" + mMoodView.getText() + "'"
+                                        + " '" + mEnergyView.getText() + "'";
             }
         }
     }

@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.jkuszneruk.sleepcalibrator.dummy.DummyContent;
+import com.example.jkuszneruk.sleepcalibrator.db.Regime;
+import com.example.jkuszneruk.sleepcalibrator.model.SleepRegimeContent;
 
 /**
  * A fragment representing a single Regime detail screen.
@@ -27,7 +28,7 @@ public class RegimeDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private Regime mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -36,6 +37,7 @@ public class RegimeDetailFragment extends Fragment {
     public RegimeDetailFragment() {
     }
 
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class RegimeDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = SleepRegimeContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -53,6 +55,7 @@ public class RegimeDetailFragment extends Fragment {
             }
         }
     }
+*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,9 +63,11 @@ public class RegimeDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.regime_detail, container, false);
 
         // Show the dummy content as text in a TextView.
+/*
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.regime_detail)).setText(mItem.details);
         }
+*/
 
         return rootView;
     }
