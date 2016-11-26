@@ -135,6 +135,7 @@ public class RegimeDAO {
     }
 
     public ArrayList<Regime> getRegimes() {
+        System.out.println("list regimes");
         ArrayList<Regime> regimes = new ArrayList<>();
 
         Cursor c = db.query(
@@ -153,6 +154,7 @@ public class RegimeDAO {
         while (c.moveToNext()) {
             Regime regime = regimeFromCursor(c);
             regimes.add(regime);
+            System.out.println("regime: " + regime);
         }
         c.close();
         return regimes;

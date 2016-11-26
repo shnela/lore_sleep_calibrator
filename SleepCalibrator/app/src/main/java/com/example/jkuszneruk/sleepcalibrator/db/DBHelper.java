@@ -27,6 +27,14 @@ public class DBHelper extends SQLiteOpenHelper {
             + REGIME_MOODS + " TEXT, "
             + REGIME_ENERGIES + " TEXT"
             + ")";
+    public static final String INSERT_INTO_REGIME_TABLE = "INSERT INTO " + REGIME_TABLE + " ("
+                + REGIME_START_DATE + ", "
+                + REGIME_WAKE_UP_TIME + ", "
+                + REGIME_SLEEP_LENGTH + ", "
+                + REGIME_REGIME_LENGTH + ", "
+                + REGIME_SCORES + ", "
+                + REGIME_MOODS + ", "
+                + REGIME_ENERGIES + ") VALUES ";
 
     private static DBHelper instance;
 
@@ -49,6 +57,18 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_REGIME_TABLE);
+        db.execSQL(INSERT_INTO_REGIME_TABLE
+                // 2016.11.10, 6:00, 8h
+                + "(1478736000, 21600, 480, 5, '42, 41, 46, 47, 48', '55, 56, 57, 58, 59', '63, 64, 65, 63, 68'), "
+                // 2016.11.13, 7:00, 7h
+                + "(1478995200, 25200, 420, 5, '14, 19, 38, 19, 43', '45, 86, 97, 38, 29', '49, 50, 13, 49, 30'), "
+                // 2016.11.16, 8:00, 6h
+                + "(1479254400, 28800, 360, 5, '2, 1, 3, 9, 14', '1, 1, 1, 1, 1', '1, 1, 1, 1, 1'), "
+                // 2016.11.19, 9:00, 7h
+                + "(1479513600, 32400, 420, 5, '90, 99, 99, 99, 100', '100, 100, 100, 100, 100', '100, 100, 100, 100, 100'), "
+                // 2016.11.22, 7:00, 8h
+                + "(1479772800, 25200, 480, 5, '42, 41, 46, 47, 48', '55, 56, 57, 58, 59', '63, 64, 65, 63, 68')"
+        );
     }
 
     @Override

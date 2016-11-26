@@ -74,6 +74,7 @@ public class SetUpNewRegime extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         regimeDAO.open();
+        initializeSliderValues();
     }
 
     @Override
