@@ -27,6 +27,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.jkuszneruk.sleepcalibrator.RegimeListActivity" />
         </activity>
+        <activity
+            android:name=".SetUpNewRegime"
+            android:label="Set Up New Regime"
+            android:parentActivityName=".RegimeListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jkuszneruk.sleepcalibrator.RegimeListActivity" />
+        </activity>
     </application>
 
 </manifest>

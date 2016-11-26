@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.example.jkuszneruk.sleepcalibrator.dummy.DummyContent;
 
 import java.util.List;
-
+import android.app.Fragment;
 /**
  * An activity representing a list of Regimes. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -48,8 +48,8 @@ public class RegimeListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Context context = view.getContext();
+                startActivity(new Intent(context, SetUpNewRegime.class));
             }
         });
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_set_up_new_regime"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.jkuszneruk.sleepcalibrator.SetUpNewRegime">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sleep duration: "/>
+            <TextView
+                android:id="@+id/sleep_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="min"
+                />
+
+        </LinearLayout>
+
+        <io.apptik.widget.MultiSlider
+            android:id="@+id/sleep_duration_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:thumbNumber="1"
+
+            app:scaleMax="720"
+            app:scaleMin="120"
+            app:scaleStep="5"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sleep between: "/>
+            <TextView
+                android:id="@+id/aim_wake_up_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:paddingLeft="5dp"/>
+            <TextView
+                android:id="@+id/aim_sleep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingLeft="5dp"
+                />
+        </LinearLayout>
+
+        <io.apptik.widget.MultiSlider
+            android:id="@+id/time_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:scaleMax="720"
+            app:scaleMin="-360"
+            app:scaleStep="5"
+
+            app:range1="@drawable/multislider_scrubber_track_holo_light"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
