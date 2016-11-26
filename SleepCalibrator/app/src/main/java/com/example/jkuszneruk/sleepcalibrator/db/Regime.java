@@ -3,6 +3,7 @@ package com.example.jkuszneruk.sleepcalibrator.db;
 import java.util.Date;
 
 public class Regime {
+    public static final int DEFAULT_REGIME_LENGTH = 5;
     private Date wakeUpTime;
     private Date startDate;
     private int sleepLength;  // in minutes
@@ -40,12 +41,28 @@ public class Regime {
         return regimeLength;
     }
 
+    public Integer[] getScores() {
+        return scores;
+    }
+
+    public void setScores(Integer[] scores) {
+        this.scores = scores;
+    }
+
     public int getScore(int i) {
         return scores[i];
     }
 
     public void setScore(int i, int score) {
         this.scores[i] = score;
+    }
+
+    public Integer[] getMoods() {
+        return moods;
+    }
+
+    public void setMoods(Integer[] moods) {
+        this.moods= moods;
     }
 
     public int getMood(int i) {
@@ -56,11 +73,23 @@ public class Regime {
         this.moods[i] = mood;
     }
 
+    public Integer[] getEnergies() {
+        return energies;
+    }
+
+    public void setEnergies(Integer[] energies) {
+        this.energies = energies;
+    }
+
     public int getEnergy(int i) {
         return energies[i];
     }
 
     public void setEnergy(int i, int energy) {
         this.energies[i] = energy;
+    }
+
+    public String toString() {
+        return "regime@" + startDate + " (" + startDate.getTime() / 1000 + ")";
     }
 }
