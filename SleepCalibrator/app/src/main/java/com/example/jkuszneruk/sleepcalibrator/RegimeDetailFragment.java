@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.jkuszneruk.sleepcalibrator.db.Regime;
+//import com.example.jkuszneruk.sleepcalibrator.db.Regime;
 
 /**
  * A fragment representing a single Regime detail screen.
@@ -27,7 +27,7 @@ public class RegimeDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private Regime mItem;
+//    private Regime mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

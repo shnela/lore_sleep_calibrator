@@ -16,10 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.example.jkuszneruk.sleepcalibrator.db.Regime;
-import com.example.jkuszneruk.sleepcalibrator.db.RegimeDAO;
-import com.example.jkuszneruk.sleepcalibrator.db.RegimeFormatting;
+import com.example.jkuszneruk.sleepcalibrator.db.Sleep;
+import com.example.jkuszneruk.sleepcalibrator.db.SleepDAO;
 
+import java.util.Arrays;
 import java.util.List;
 import android.app.Fragment;
 /**
@@ -37,13 +37,13 @@ public class RegimeListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    private RegimeDAO regimeDAO;
+    private SleepDAO sleepDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        regimeDAO = new RegimeDAO(this);
-        regimeDAO.open();
+        sleepDAO = new SleepDAO(this);
+        sleepDAO.open();
         setContentView(R.layout.activity_regime_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -82,15 +82,15 @@ public class RegimeListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(regimeDAO.getRegimes()));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(sleepDAO.getSleepsMatrix()));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Regime> mValues;
+        private final List<int[]> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Regime> items) {
+        public SimpleItemRecyclerViewAdapter(List<int[]> items) {
             mValues = items;
         }
 
@@ -105,15 +105,17 @@ public class RegimeListActivity extends AppCompatActivity {
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
 
-            holder.mTimeView.setText(RegimeFormatting.startTime(holder.mItem) + " + " + RegimeFormatting.sleepLength(holder.mItem));
+            int hour = position / 8 + 6;
+            double duration = (position % 8 + 12) / 2.0;
 
+            holder.mTimeView.setText(hour + ":00 - " + hour + ":59 (" + duration + " h)");
 
-            if (Math.random() > 0.5) { // test whether data available here
+            if (holder.mItem[0] > 0) { // test whether data available here
                 holder.mStats.setVisibility(View.VISIBLE);
                 holder.mNoData.setVisibility(View.GONE);
-                holder.mQualityView.setText(RegimeFormatting.averageQuality(holder.mItem));
-                holder.mMoodView.setText(RegimeFormatting.averageMood(holder.mItem));
-                holder.mEnergyView.setText(RegimeFormatting.averageEnergy(holder.mItem));
+                holder.mQualityView.setText(Integer.toString(holder.mItem[0]));
+                holder.mMoodView.setText(Integer.toString(holder.mItem[1]));
+                holder.mEnergyView.setText(Integer.toString(holder.mItem[2]));
             }
             else {
                 holder.mNoData.setVisibility(View.VISIBLE);
@@ -162,7 +164,7 @@ public class RegimeListActivity extends AppCompatActivity {
             public final TextView mMoodView;
             public final TextView mEnergyView;
 
-            public Regime mItem;
+            public int[] mItem;
 
             public ViewHolder(View view) {
                 super(view);
