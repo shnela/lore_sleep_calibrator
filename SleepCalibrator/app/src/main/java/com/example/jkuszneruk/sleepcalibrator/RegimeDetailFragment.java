@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jkuszneruk.sleepcalibrator.db.Regime;
-import com.example.jkuszneruk.sleepcalibrator.model.SleepRegimeContent;
 
 /**
  * A fragment representing a single Regime detail screen.

@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 
 import com.example.jkuszneruk.sleepcalibrator.db.Regime;
+import com.example.jkuszneruk.sleepcalibrator.db.RegimeDAO;
 import com.example.jkuszneruk.sleepcalibrator.db.RegimeFormatting;
-import com.example.jkuszneruk.sleepcalibrator.model.SleepRegimeContent;
 
 import java.util.List;
 import android.app.Fragment;
@@ -37,10 +37,13 @@ public class RegimeListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    private RegimeDAO regimeDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        regimeDAO = new RegimeDAO(this);
+        regimeDAO.open();
         setContentView(R.layout.activity_regime_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,7 +82,7 @@ public class RegimeListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(SleepRegimeContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(regimeDAO.getRegimes()));
     }
 
     public class SimpleItemRecyclerViewAdapter
