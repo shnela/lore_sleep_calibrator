@@ -155,11 +155,8 @@ public class SleepDAO {
                     energySum += s.getEnergy();
                 }
                 int[] tmp;
-                if (length == 0) {
-                    tmp = new int[] {0, 0, 0};
-                } else {
-                    tmp = new int[] {scoreSum / length, moodSum / length, energySum / length};
-
+                if (length != 0) {
+                    tmp = new int[] {scoreSum / length, moodSum / length, energySum / length, i, j};
                     result.add(tmp);
                 }
             }

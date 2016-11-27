@@ -113,8 +113,8 @@ public class RegimeListActivity extends AppCompatActivity {
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
 
-            int hour = position / 8 + 6;
-            double duration = (position % 8 + 12) / 2.0;
+            int hour = holder.mItem[3] + 6;
+            double duration = (holder.mItem[4] + 12) / 2.0;
 
             holder.mTimeView.setText(hour + ":00 - " + hour + ":59 (" + duration + " h)");
 
@@ -138,25 +138,13 @@ public class RegimeListActivity extends AppCompatActivity {
             });
 ;
 
-            if (holder.mItem[0] > 0) { // test whether data available here
-//                holder.mStats.setVisibility(View.VISIBLE);
-//                holder.mNoData.setVisibility(View.GONE);
-                holder.mQualityView.setText(Integer.toString(holder.mItem[0]));
-                holder.mMoodView.setText(Integer.toString(holder.mItem[1]));
-                holder.mEnergyView.setText(Integer.toString(holder.mItem[2]));
+            holder.mQualityView.setText(Integer.toString(holder.mItem[0]));
+            holder.mMoodView.setText(Integer.toString(holder.mItem[1]));
+            holder.mEnergyView.setText(Integer.toString(holder.mItem[2]));
 
-                /* update progress bar */
-                int qos = (holder.mItem[0] + holder.mItem[1] + holder.mItem[2]) / 3;
-                holder.QoS.setProgress(qos);
-            }
-            else {
-//                holder.mNoData.setVisibility(View.VISIBLE);
-//                holder.mStats.setVisibility(View.GONE);
-            }
-
-
-
-
+            /* update progress bar */
+            int qos = (holder.mItem[0] + holder.mItem[1] + holder.mItem[2]) / 3;
+            holder.QoS.setProgress(qos);
 
             /*holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
