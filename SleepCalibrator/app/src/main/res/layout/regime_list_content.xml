@@ -8,82 +8,51 @@
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem"
         />
 
 
-    <!--<mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/btn_preview"
-        android:layout_weight="0.4"
+<!--
+    <TextView
+        android:id="@+id/nodata"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:fontFeatureSettings="smcp"
+        android:text="no data"
+        android:textColor="#999999"
+        android:visibility="gone"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/text_margin"/>
+-->
 
-        fancy:fb_text="try"
-        fancy:fb_ghost="true"
-        fancy:fb_radius="20dp"
-        fancy:fb_textColor="#666666"
-        fancy:fb_borderColor="#666666"
-        fancy:fb_borderWidth="1dp"
-        />-->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <TextView
+        android:id="@+id/quality"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textAlignment="center"/>
 
-        <TextView
-            android:id="@+id/nodata"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:fontFeatureSettings="smcp"
-            android:text="no data"
-            android:textColor="#999999"
-            android:visibility="gone"
-            android:textAlignment="center"
-            android:layout_margin="@dimen/text_margin"/>
+    <TextView
+        android:id="@+id/mood"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textAlignment="center"/>
 
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-
-            <TextView
-                android:id="@+id/quality"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/mood"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/energy"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textAlignment="center"/>
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/energy"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textAlignment="center"/>
 
 </LinearLayout>

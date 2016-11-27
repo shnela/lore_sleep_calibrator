@@ -1,5 +1,10 @@
 package com.example.jkuszneruk.sleepcalibrator;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.database.CursorIndexOutOfBoundsException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,12 +12,13 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Exchanger;
 
 import io.apptik.widget.MultiSlider;
 
-public class SetUpNewRegime extends AppCompatActivity {
+public class SetUpNewRegime extends AppCompatActivity /*implements BroadcastReceiver*/ {
 
     enum TextType {
         DurationHoursPart,
@@ -191,4 +197,24 @@ public class SetUpNewRegime extends AppCompatActivity {
         aim_wake_up_time.setText(minutesToTime(aim_go_sleep, TextType.AimGoSleep));
         aim_sleep_time.setText(minutesToTime(aim_wake_up, TextType.AimWakeUp));
     }
+
+/*
+    private void setAlarm(Date wakeUpTime) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(wakeUpTime);
+
+        AlarmManager alarmMgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+
+        PendingIntent alarmIntent;
+        Intent intent = new Intent(getApplicationContext(), SetUpNewRegime.class);
+
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() - System.currentTimeMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+    }
+*/
+
 }
