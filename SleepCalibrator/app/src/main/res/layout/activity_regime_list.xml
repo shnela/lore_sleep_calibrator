@@ -21,23 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="509dp"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:id="@+id/linearLayout">
-
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <include layout="@layout/regime_list" />
-        </FrameLayout>
-    </LinearLayout>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -61,6 +44,23 @@
         app:fabSize="normal"
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="bottom|center_horizontal" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="509dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:id="@+id/linearLayout">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <include layout="@layout/regime_list" />
+        </FrameLayout>
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

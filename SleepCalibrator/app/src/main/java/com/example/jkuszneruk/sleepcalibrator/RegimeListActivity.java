@@ -9,19 +9,25 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ProgressBar;
 
 
 import com.example.jkuszneruk.sleepcalibrator.db.Sleep;
 import com.example.jkuszneruk.sleepcalibrator.db.SleepDAO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import android.app.Fragment;
+
+import io.apptik.widget.MultiSlider;
+
 /**
  * An activity representing a list of Regimes. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -38,6 +44,7 @@ public class RegimeListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
     private SleepDAO sleepDAO;
+    private static Boolean updateLock = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +96,7 @@ public class RegimeListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<int[]> mValues;
+        private final ArrayList<int[]> wakeUpGoSleepBackup = new ArrayList<>();
 
         public SimpleItemRecyclerViewAdapter(List<int[]> items) {
             mValues = items;
@@ -110,12 +118,36 @@ public class RegimeListActivity extends AppCompatActivity {
 
             holder.mTimeView.setText(hour + ":00 - " + hour + ":59 (" + duration + " h)");
 
+            /* configure slider positions */
+            wakeUpGoSleepBackup.add(new int[] {(hour - (int)duration) * 60, hour * 60});
+            holder.mSleepSlider.getThumb(0).setValue(wakeUpGoSleepBackup.get(position)[0]);
+            holder.mSleepSlider.getThumb(1).setValue(wakeUpGoSleepBackup.get(position)[1]);
+            holder.mSleepSlider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
+                @Override
+                public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
+                    if (updateLock)
+                        return;
+                    updateLock = true;
+                    holder.mSleepSlider.getThumb(0).setValue(wakeUpGoSleepBackup.get(thumbIndex)[0]);
+                    holder.mSleepSlider.getThumb(1).setValue(wakeUpGoSleepBackup.get(thumbIndex)[1]);
+//                    System.out.println(thumbIndex);
+//                    System.out.println(wakeUpGoSleepBackup.get(thumbIndex)[0]);
+//                    System.out.println(wakeUpGoSleepBackup.get(thumbIndex)[1]);
+                    updateLock = false;
+                }
+            });
+;
+
             if (holder.mItem[0] > 0) { // test whether data available here
 //                holder.mStats.setVisibility(View.VISIBLE);
 //                holder.mNoData.setVisibility(View.GONE);
                 holder.mQualityView.setText(Integer.toString(holder.mItem[0]));
                 holder.mMoodView.setText(Integer.toString(holder.mItem[1]));
                 holder.mEnergyView.setText(Integer.toString(holder.mItem[2]));
+
+                /* update progress bar */
+                int qos = (holder.mItem[0] + holder.mItem[1] + holder.mItem[2]) / 3;
+                holder.QoS.setProgress(qos);
             }
             else {
 //                holder.mNoData.setVisibility(View.VISIBLE);
@@ -165,6 +197,10 @@ public class RegimeListActivity extends AppCompatActivity {
             public final TextView mMoodView;
             public final TextView mEnergyView;
 
+            public final MultiSlider mSleepSlider;
+
+            public final ProgressBar QoS;
+
             public int[] mItem;
 
             public ViewHolder(View view) {
@@ -178,6 +214,10 @@ public class RegimeListActivity extends AppCompatActivity {
                 mQualityView = (TextView) view.findViewById(R.id.quality);
                 mMoodView = (TextView) view.findViewById(R.id.mood);
                 mEnergyView = (TextView) view.findViewById(R.id.energy);
+
+                mSleepSlider = (MultiSlider) view.findViewById(R.id.time_sleep_slider);
+
+                QoS = (ProgressBar) view.findViewById(R.id.QoS);
             }
 
             @Override

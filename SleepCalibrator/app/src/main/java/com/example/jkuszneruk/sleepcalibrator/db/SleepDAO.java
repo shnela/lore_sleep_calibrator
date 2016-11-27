@@ -88,6 +88,7 @@ public class SleepDAO {
 //        return regime;
 
         // FIXME: workaround
+        /* for me: PERFECT! */
         for (Sleep s : getSleeps()) {
             if (s.getWakeUpDate().equals(wakeUpDate)) {
                 return s;
@@ -158,8 +159,9 @@ public class SleepDAO {
                     tmp = new int[] {0, 0, 0};
                 } else {
                     tmp = new int[] {scoreSum / length, moodSum / length, energySum / length};
+
+                    result.add(tmp);
                 }
-                result.add(tmp);
             }
         }
         return result;

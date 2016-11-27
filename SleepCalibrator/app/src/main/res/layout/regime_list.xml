@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_marginLeft="16dp"
-            android:layout_weight="1.2"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:src="@drawable/alarm_clock"
             android:layout_gravity="center" />
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_mood"
+            android:src="@drawable/ic_action_name"
             android:layout_gravity="center"/>
 
         <ImageView
@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:layout_marginRight="16dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_energy"
+            android:src="@drawable/lightning_white"
             android:layout_gravity="center"/>
     </LinearLayout>
 
