@@ -17,8 +17,16 @@ import io.apptik.widget.MultiSlider;
 
 public class SetUpNewRegime extends AppCompatActivity {
 
+    enum TextType {
+        DurationHoursPart,
+        DurationMinutesPart,
+        AimGoSleep,
+        AimWakeUp,
+    }
+
     /* time delta */
-    private TextView sleep_duration;
+    private TextView sleep_duration_hours;
+    private TextView sleep_duration_minutes;
     /* 1hr - 16hr in minutes, 5min interval */
     private MultiSlider sleep_duration_slider;
     /* time boundaries */
@@ -40,7 +48,8 @@ public class SetUpNewRegime extends AppCompatActivity {
         setContentView(R.layout.activity_set_up_new_regime);
 
         /* time delta */
-        sleep_duration = (TextView) findViewById(R.id.sleep_duration);
+        sleep_duration_hours = (TextView) findViewById(R.id.sleep_duration_hours);
+        sleep_duration_minutes = (TextView) findViewById(R.id.sleep_duration_minutes);
         sleep_duration_slider = (MultiSlider) findViewById(R.id.sleep_duration_slider);
         /* time boundaries */
         aim_wake_up_time = (TextView) findViewById(R.id.aim_wake_up_time);
@@ -52,7 +61,7 @@ public class SetUpNewRegime extends AppCompatActivity {
         sleep_duration_slider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
-                moveSleep(1);
+                moveSleep(TextType.AimWakeUp);
             }
         });
 
@@ -60,11 +69,11 @@ public class SetUpNewRegime extends AppCompatActivity {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
                 if (thumbIndex == 0) {
-                    aim_wake_up_time.setText(minutesToTime(value));
-                    moveSleep(0);
+                    aim_wake_up_time.setText(minutesToTime(value, TextType.AimWakeUp));
+                    moveSleep(TextType.AimGoSleep);
                 } else {
-                    aim_sleep_time.setText(minutesToTime(value));
-                    moveSleep(1);
+                    aim_sleep_time.setText(minutesToTime(value, TextType.AimGoSleep));
+                    moveSleep(TextType.AimWakeUp);
                 }
             }
         });
@@ -127,18 +136,28 @@ public class SetUpNewRegime extends AppCompatActivity {
             time_slider.getThumb(1).setValue(7 * 60);
         }
 
-        moveSleep(1);
+        moveSleep(TextType.AimWakeUp);
     }
 
-    private String minutesToTime(int value) {
-        int minutes = ((value + 24 * 60) % (24 * 60));
-        String time = String.format("%02d:%02d", minutes / 60, minutes % 60);
+    private String minutesToTime(int value, TextType textType) {
+        int minutes_24h = ((value + 24 * 60) % (24 * 60));
+
+        String time;
+        if (textType == TextType.DurationMinutesPart) {
+            time = String.format("%02d", minutes_24h % 60);
+        }
+        else if (textType == TextType.DurationHoursPart) {
+            time = String.format("%02d", minutes_24h / 60);
+        } else {
+            String am_pm = (minutes_24h >= 12 * 60 ? "pm" : "am");
+            time = String.format("%02d:%02d%s", minutes_24h / 60, minutes_24h % 60, am_pm);
+        }
         return time;
     }
 
-    private void moveSleep(int base_thumb) {
-        /* move sleep with delta sleep value
-            go sleep time is const if base_thumb == 0 otherwise wake up time is constant
+    private void moveSleep(TextType base_thumb) {
+        /* move sleep with constant delta sleep value
+           depending of base_thumb GoSleep or WakeUp time is constant
          */
 
         if (editing_slider)
@@ -149,11 +168,11 @@ public class SetUpNewRegime extends AppCompatActivity {
         int aim_go_sleep = time_slider.getThumb(0).getValue();
         int aim_wake_up = time_slider.getThumb(1).getValue();
 
-        if (base_thumb == 0) {
+        if (base_thumb == TextType.AimGoSleep) {
             // aim go sleep time is base
             int new_aim_wake_up = aim_go_sleep + sleep_delta_minutes;
             time_slider.getThumb(1).setValue(new_aim_wake_up);
-        } else {
+        } else if (base_thumb == TextType.AimWakeUp) {
             // aim wake up time is base
             int new_aim_go_sleep = aim_wake_up - sleep_delta_minutes;
             time_slider.getThumb(0).setValue(new_aim_go_sleep);
@@ -168,9 +187,10 @@ public class SetUpNewRegime extends AppCompatActivity {
         int sleep_delta_minutes = sleep_duration_slider.getThumb(0).getValue();
         int aim_go_sleep = time_slider.getThumb(0).getValue();
         int aim_wake_up = time_slider.getThumb(1).getValue();
-        
-        sleep_duration.setText(minutesToTime(sleep_delta_minutes));
-        aim_wake_up_time.setText(minutesToTime(aim_go_sleep));
-        aim_sleep_time.setText(minutesToTime(aim_wake_up));
+
+        sleep_duration_hours.setText(minutesToTime(sleep_delta_minutes, TextType.DurationHoursPart));
+        sleep_duration_minutes.setText(minutesToTime(sleep_delta_minutes, TextType.DurationMinutesPart));
+        aim_wake_up_time.setText(minutesToTime(aim_go_sleep, TextType.AimGoSleep));
+        aim_sleep_time.setText(minutesToTime(aim_wake_up, TextType.AimWakeUp));
     }
 }

@@ -10,4 +10,5 @@
     <dimen name="morning_interview">16dp</dimen>
     <dimen name="slider_desc_top_margin">4dp</dimen>
     <dimen name="slider_desc_question_size">18sp</dimen>
+    <dimen name="slider_settings_text_size">24sp</dimen>
 </resources>

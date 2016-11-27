@@ -16,23 +16,51 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="You will be sleeping for"
+            android:textSize="@dimen/slider_settings_text_size"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TextView
+                android:id="@+id/sleep_duration_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You will be sleeping for: "/>
-            <TextView
-                android:id="@+id/sleep_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="min"
+                android:text="08"
                 android:textStyle="normal|bold"
+                android:textSize="@dimen/slider_settings_text_size"
+                android:paddingLeft="30dp"
                 />
 
+            <TextView
+                android:text=" hours,  "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/slider_settings_text_size" />
+
+            <TextView
+                android:text="32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sleep_duration_minutes"
+                android:textStyle="normal|bold"
+                android:textSize="@dimen/slider_settings_text_size" />
+
+            <TextView
+                android:text="minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/slider_settings_text_size"
+                android:layout_weight="1"
+                android:paddingRight="30dp"
+                />
         </LinearLayout>
 
         <io.apptik.widget.MultiSlider
@@ -44,7 +72,7 @@
             app:thumbNumber="1"
 
             app:scaleMax="720"
-            app:scaleMin="120"
+            app:scaleMin="240"
             app:scaleStep="5"
             />
 
@@ -56,24 +84,41 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You will be sleeping between "/>
+                android:text="You will be sleeping between"
+                android:textSize="@dimen/slider_settings_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/aim_wake_up_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textStyle="normal|bold" />
+                android:text="23:32pm"
+                android:textStyle="normal|bold"
+                android:textSize="@dimen/slider_settings_text_size"
+                android:layout_weight="1"
+                android:paddingLeft="40dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" and "
-                />
+                android:textSize="@dimen/slider_settings_text_size"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/aim_sleep_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textStyle="normal|bold" />
+                android:text="07:00am"
+                android:textStyle="normal|bold"
+                android:textSize="@dimen/slider_settings_text_size"
+                android:layout_weight="1"
+                android:paddingRight="40dp" />
         </LinearLayout>
 
         <io.apptik.widget.MultiSlider
