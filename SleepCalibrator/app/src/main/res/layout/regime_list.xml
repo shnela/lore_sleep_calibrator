@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#ffffff"
-            android:text="     x     "
+            android:text="stats"
             android:textAlignment="center"
             android:layout_margin="@dimen/text_margin"
             android:textAppearance="?attr/textAppearanceListItem"
@@ -39,7 +39,7 @@
 
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:text=" x "/>
+                    android:text="asdf"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -49,7 +49,7 @@
 
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:text=" x "/>
+                    android:text="asdf"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -59,7 +59,7 @@
 
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:text=" x "/>
+                    android:text="asdf"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -76,4 +76,5 @@
         app:layoutManager="LinearLayoutManager"
         tools:context="com.example.jkuszneruk.sleepcalibrator.RegimeListActivity"
         tools:listitem="@layout/regime_list_content" />
+
 </LinearLayout>

@@ -44,18 +44,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_info_details"
-        app:fabSize="mini" />
+        app:srcCompat="@drawable/alarm_clock"
+        app:fabSize="mini"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:clickable="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/btn_star_big_on"
+        app:srcCompat="@android:drawable/ic_menu_edit"
         android:id="@+id/morningInterview"
-        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_gravity="top|center_horizontal"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/holo_green_light"
+        app:backgroundTint="@color/colorPrimaryDark"
         app:fabSize="normal"
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="bottom|center_horizontal" />
