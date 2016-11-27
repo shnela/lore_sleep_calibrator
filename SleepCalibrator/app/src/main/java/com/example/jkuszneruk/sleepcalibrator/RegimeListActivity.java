@@ -111,16 +111,17 @@ public class RegimeListActivity extends AppCompatActivity {
             holder.mTimeView.setText(hour + ":00 - " + hour + ":59 (" + duration + " h)");
 
             if (holder.mItem[0] > 0) { // test whether data available here
-                holder.mStats.setVisibility(View.VISIBLE);
-                holder.mNoData.setVisibility(View.GONE);
+//                holder.mStats.setVisibility(View.VISIBLE);
+//                holder.mNoData.setVisibility(View.GONE);
                 holder.mQualityView.setText(Integer.toString(holder.mItem[0]));
                 holder.mMoodView.setText(Integer.toString(holder.mItem[1]));
                 holder.mEnergyView.setText(Integer.toString(holder.mItem[2]));
             }
             else {
-                holder.mNoData.setVisibility(View.VISIBLE);
-                holder.mStats.setVisibility(View.GONE);
+//                holder.mNoData.setVisibility(View.VISIBLE);
+//                holder.mStats.setVisibility(View.GONE);
             }
+
 
 
 
@@ -157,9 +158,9 @@ public class RegimeListActivity extends AppCompatActivity {
 
             public final TextView mTimeView;
 
-            public final LinearLayout mStats;
+            /*public final LinearLayout mStats;
             public final TextView mNoData;
-
+*/
             public final TextView mQualityView;
             public final TextView mMoodView;
             public final TextView mEnergyView;
@@ -170,8 +171,10 @@ public class RegimeListActivity extends AppCompatActivity {
                 super(view);
                 mView = view;
                 mTimeView = (TextView) view.findViewById(R.id.time);
+/*
                 mStats = (LinearLayout) view.findViewById(R.id.stats);
                 mNoData = (TextView) view.findViewById(R.id.nodata);
+*/
                 mQualityView = (TextView) view.findViewById(R.id.quality);
                 mMoodView = (TextView) view.findViewById(R.id.mood);
                 mEnergyView = (TextView) view.findViewById(R.id.energy);

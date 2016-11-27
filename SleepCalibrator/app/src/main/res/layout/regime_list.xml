@@ -7,61 +7,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:background="@color/colorPrimary">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1.2"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#ffffff"
-            android:text="stats"
-            android:textAlignment="center"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"
-            />
+            android:src="@drawable/alarm_clock"
+            android:layout_gravity="center" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <ImageView
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            android:src="@drawable/ic_quality"
+            android:layout_gravity="center"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mood"
+            android:layout_gravity="center"/>
 
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:text="asdf"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:text="asdf"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:text="asdf"/>
-            </LinearLayout>
-        </LinearLayout>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_energy"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -76,5 +53,4 @@
         app:layoutManager="LinearLayoutManager"
         tools:context="com.example.jkuszneruk.sleepcalibrator.RegimeListActivity"
         tools:listitem="@layout/regime_list_content" />
-
 </LinearLayout>
