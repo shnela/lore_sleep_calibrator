@@ -79,12 +79,23 @@
             <TextView
                 android:id="@+id/users_mood_value"
                 android:layout_height="60dp"
-                android:layout_width="60dp"
+                android:layout_width="75dp"
+                android:paddingLeft="10dp"
+                android:text="100"
+                android:textStyle="normal|bold"
+                android:textSize="36sp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_height="60dp"
+                android:layout_width="74dp"
                 android:paddingLeft="10dp"
                 android:text="84"
                 android:textStyle="normal|bold"
                 android:textSize="36sp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:layout_weight="1" />
 
             <io.apptik.widget.MultiSlider
                 android:id="@+id/users_mood_slider"
@@ -155,13 +166,35 @@
 
             <TextView
                 android:id="@+id/users_energy_value"
-                android:layout_height="60dp"
-                android:layout_width="60dp"
+                android:layout_height="64dp"
                 android:paddingLeft="10dp"
                 android:text="73"
                 android:textStyle="normal|bold"
                 android:textSize="36sp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:layout_width="75dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_height="60dp"
+                android:layout_width="75dp"
+                android:paddingLeft="10dp"
+                android:text="100"
+                android:textStyle="normal|bold"
+                android:textSize="36sp"
+                android:gravity="center_vertical"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_height="60dp"
+                android:layout_width="74dp"
+                android:paddingLeft="10dp"
+                android:text="84"
+                android:textStyle="normal|bold"
+                android:textSize="36sp"
+                android:gravity="center_vertical"
+                android:layout_weight="1" />
 
             <io.apptik.widget.MultiSlider
                 android:id="@+id/users_energy_slider"
